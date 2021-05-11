@@ -1,0 +1,48 @@
+{
+  "name": "nhymxu/php-floc-disable",
+  "description": "PHP middleware to disable Google's Federated Learning of Cohorts (FLoC) tracking",
+  "keywords": [
+    "nhymxu",
+    "php-floc-disable",
+    "floc"
+  ],
+  "homepage": "https://github.com/nhymxu/php-floc-disable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dũng Nguyễn",
+      "email": "contact@dungnt.net"
+    }
+  ],
+  "require": {
+    "php": "^7.3 || ^8.0",
+    "psr/http-server-middleware": "^1"
+  },
+  "require-dev": {
+    "nyholm/psr7": "^1.4",
+    "phpunit/phpunit": "^8|^9",
+    "roave/security-advisories": "dev-latest"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nhymxu\\FlocDisable\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nhymxu\\FlocDisable\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+    "psalm": "vendor/bin/psalm",
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+    "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+  },
+  "config": {
+    "sort-packages": true,
+    "process-timeout": 0
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
