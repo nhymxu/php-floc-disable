@@ -1,5 +1,8 @@
 # nhymxu/php-floc-disable
 
+[![packagist](https://img.shields.io/packagist/v/nhymxu/php-floc-disable.svg?style=flat-square)](https://packagist.org/packages/nhymxu/php-floc-disable)
+[![phpunit](https://github.com/nhymxu/php-floc-disable/actions/workflows/phpunit.yml/badge.svg?branch=main)](https://github.com/nhymxu/php-floc-disable/actions/workflows/phpunit.yml)
+
 PHP middleware to disable Google's Federated Learning of Cohorts (`FLoC`) tracking
 
 ## Usage
