@@ -20,6 +20,17 @@ final class FlocDisableMiddleware implements MiddlewareInterface
     {
         $response = $handler->handle($request);
 
-        return $response->withHeader('Permissions-Policy', 'interest-cohort=()');
+        if (!$response->hasHeader('Permissions-Policy')) {
+            return $response->withHeader('Permissions-Policy', 'interest-cohort=()');
+        }
+
+        $policy = $response->getHeaderLine('Permissions-Policy');
+        if (trim($policy) !== '') {
+            $policy .= ',';
+        }
+
+        $policy .= 'interest-cohort=()';
+
+        return $response->withHeader('Permissions-Policy', $policy);
     }
 }
