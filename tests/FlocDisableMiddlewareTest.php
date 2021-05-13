@@ -14,7 +14,7 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 final class FlocDisableMiddlewareTest extends TestCase
 {
-    public function testAddHeader(): void
+    public function testNotExistsHeader(): void
     {
         $middleware = new FlocDisableMiddleware();
 
@@ -29,6 +29,25 @@ final class FlocDisableMiddlewareTest extends TestCase
 
         self::assertEquals(
             'interest-cohort=()',
+            $response->getHeaderLine('Permissions-Policy')
+        );
+    }
+
+    public function testExistsHeader(): void
+    {
+        $middleware = new FlocDisableMiddleware();
+
+        $serverRequest = new ServerRequest('GET', '/');
+
+        $requestHandler = $this->createMock(RequestHandlerInterface::class);
+        $requestHandler->method('handle')
+            ->with($serverRequest)
+            ->willReturn(new Response(200, ['Permissions-Policy' => 'geolocation=*,camera=()']));
+
+        $response = $middleware->process($serverRequest, $requestHandler);
+
+        self::assertEquals(
+            'geolocation=*,camera=(),interest-cohort=()',
             $response->getHeaderLine('Permissions-Policy')
         );
     }
